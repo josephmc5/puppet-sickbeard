@@ -49,5 +49,12 @@ class sickbeard( $source = 'true' ) {
     file { "/usr/local/sickbeard":
         ensure => link,
         target => "/usr/local/sickbeard-$version",
-    }   
+    } 
+
+    file { "/etc/init.d/sickbeard":
+        content => template('sickbeard/init-rhel.erb'),
+        owner => 'root',
+        group => 'root',
+        mode => '0755',
+    }  
 }

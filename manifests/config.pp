@@ -7,6 +7,8 @@ class sickbeard::config {
 	$sab_host = extlookup("sab_host")
 	$sab_apikey = extlookup("sab_apikey")
 	
+	$web_port = "8081"
+	
 	$nzb_dir = "/usr/local/SABnzbd-downloads/listen/TV"
 	
 	file { "/usr/local/sickbeard-$version/config.ini":

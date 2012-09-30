@@ -4,7 +4,7 @@ class sickbeard::config {
 	$nzbmatrix_apikey = extlookup("nzbmatrix_apikey")
 	$newzbin_username = extlookup("newzbin_username")
 	$newzbin_password = extlookup("newzbin_password")
-	$sab_host = extlookup("sabhost")
+	$sab_host = extlookup("sab_host")
 	$sab_apikey = extlookup("sab_apikey")
 	
 	$nzb_dir = "/usr/local/SABnzbd-downloads/listen/TV"

@@ -9,7 +9,7 @@ class sickbeard::config {
 	
 	$nzb_dir = "/usr/local/SABnzbd-downloads/listen/TV"
 	
-	file { "/usr/local/SABnzbd-$version/config.ini":
+	file { "/usr/local/sickbeard-$version/config.ini":
 		content => template('sickbeard/config.ini.erb'),
 		owner => 'root',
 		group => 'root',

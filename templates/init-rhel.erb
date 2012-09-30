@@ -37,27 +37,18 @@ RETVAL=0
 
 start() {
 	echo -n $"Starting Sickbeard: "
-    /usr/bin/sudo -u $DAEMON_USER -H $PYTHON_LOCATION $DAEMON_LOCATION $DAEMON_ARGS
+	daemon --user=$DAEMON_USER $PYTHON_LOCATION $DAEMON_LOCATION $DAEMON_ARGS &
     RETVAL=$?
-    PID=$!
-    echo [ $RETVAL = 0 ]
     return $RETVAL
 }
 
 stop() {
 	echo -n $"Stopping Sickbeard: "
-	/usr/bin/wget -q --delete-after "$DAEMON_URL/home/shutdown/?pid=$PID"
+	PID=`ps -ef | grep SickBeard.py | grep -v runuser | grep -v grep | grep -v bash | awk '{print $2}'`
+	echo $PID
+	kill -15 $PID
 	RETVAL=$?
-	echo [ $RETVAL = 0 ]
-    return $RETVAL
-}
-
-restart() {
-	echo -n $"Restarting Sickbeard: "
-	/usr/bin/wget -q --delete-after "$DAEMON_URL/home/restart/?pid=$PID"
-	RETVAL=$?
-	echo [ $RETVAL = 0 ]
-    return $RETVAL
+	return $RETVAL
 }
 
 case "$1" in

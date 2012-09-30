@@ -11,8 +11,8 @@ class sickbeard::config {
 	
 	file { "/usr/local/sickbeard-$version/config.ini":
 		content => template('sickbeard/config.ini.erb'),
-		owner => 'root',
-		group => 'root',
+		owner => 'sickbeard',
+		group => 'sickbeard',
 		mode => '0644',
         require => Exec['unpackage-sickbeard']
 	}

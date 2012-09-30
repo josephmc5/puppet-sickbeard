@@ -20,10 +20,10 @@ class sickbeard( $source = 'true' ) {
 	}
 	
 	exec { 'unpackage-sickbeard':
-		command => "/bin/tar xzf /usr/local/$package",
-		cwd     => "/usr/local",
-		creates => "/usr/local/sickbeard-$version",
-        before => File["/usr/local/sickbeard-$version"]
+		command => "/bin/tar xzf /usr/local/$package --strip-components 1",
+		cwd     => "/usr/local/sickbeard-$version",
+		creates => "/usr/local/sickbeard-$version/SickBeard.py",
+        require => File["/usr/local/sickbeard-$version"]
 	}
 	
 	file { "/usr/local/sickbeard":

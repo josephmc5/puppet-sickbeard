@@ -1,4 +1,4 @@
-class sickbeard {
+class sickbeard inherits sickbeard::params{
 
     $url = "https://github.com/midgetspy/Sick-Beard"
     
@@ -10,11 +10,11 @@ class sickbeard {
         uid => '601',
         shell => '/bin/bash',
         gid => '700',
-        home => '/home/sickbeard',
+        home => "$base_dir/sickbeard",
         password => '*',
     }
 
-    file { '/home/sickbeard':
+    file { "$base_dir/sickbeard":
         ensure => directory,
         owner => 'sickbeard',
         group => 'automators',
@@ -28,14 +28,6 @@ class sickbeard {
         creates => "/usr/local/sickbeard",
     }
     
-    file { "/usr/local/sickbeard":
-        ensure => directory,
-        owner => 'sickbeard',
-        group => 'automators',
-        mode => '0644',
-        recurse => 'true'
-    }
-
     file { "/etc/init.d/sickbeard":
         content => template('sickbeard/init-rhel.erb'),
         owner => 'root',

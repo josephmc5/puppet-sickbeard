@@ -46,7 +46,9 @@ extra_scripts = ""
 git_path = ""
 ignore_words = "german,french,core2hd,dutch,swedish"
 [Blackhole]
-nzb_dir = /usr/local/sabnzbd-downloads/listen/TV
+<% if @nzb_scan_dir %>
+nzb_dir = <%= nzb_scan_dir %>
+<% end %>
 torrent_dir = ""
 [EZRSS]
 ezrss = 0
@@ -62,14 +64,18 @@ nzbs_hash = ""
 nzbsrus = 0
 nzbsrus_uid = ""
 nzbsrus_hash = ""
+<% if @nzbmatrix_username %>
 [NZBMatrix]
 nzbmatrix = 1
 nzbmatrix_username = <%= nzbmatrix_username %>
 nzbmatrix_apikey = <%= nzbmatrix_apikey %>
+<% end %>
+<% if @newzbin_username %>
 [Newzbin]
 newzbin = 0
 newzbin_username = <%= newzbin_username %>
 newzbin_password = <%= newzbin_password %>
+<% end %>
 [Womble]
 womble = 0
 [SABnzbd]
@@ -77,7 +83,7 @@ sab_username = ""
 sab_password = ""
 sab_apikey = <%= sabnzbd_apikey %>
 sab_category = tv
-sab_host = <%= sabnzbd_host %>
+sab_host = <%= sabnzbd_url %>
 [NZBget]
 nzbget_password = ""
 nzbget_category = tv

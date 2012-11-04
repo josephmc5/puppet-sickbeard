@@ -1,10 +1,10 @@
 [General]
-log_dir = /usr/local/sickbeard/Logs
+log_dir = <%= log_dir %>
 web_port = <%= sickbeard_port %>
-web_host = <%= ipaddress %>
+web_host = <%= sickbeard_host %>
 web_ipv6 = 0
 web_log = 0
-web_root = /sickbeard
+web_root = <%= sickbeard_webroot %>
 web_username = ""
 web_password = ""
 use_nzbs = 1
@@ -97,17 +97,19 @@ xbmc_update_full = 0
 xbmc_host = ""
 xbmc_username = ""
 xbmc_password = ""
+<% if @plex_server_host %>
 [Plex]
-use_plex = 0
+use_plex = 1
 plex_notify_onsnatch = 0
 plex_notify_ondownload = 0
 plex_update_library = 0
-plex_server_host = ""
+plex_server_host = "<%= plex_server_host %>"
 plex_host = ""
 plex_username = ""
 plex_password = ""
+<% end %>
 [Growl]
-use_growl = 0
+use_growl = <%= enable_growl %>
 growl_notify_onsnatch = 0
 growl_notify_ondownload = 0
 growl_host = ""

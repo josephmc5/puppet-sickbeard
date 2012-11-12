@@ -9,12 +9,16 @@ class sickbeard::params (
     $base_dir = hiera("app_dir", "/opt"),
     $nzb_dir = hiera("nbz_scan_dir", ""),
     $sabnzbd_apikey = hiera("sabnzbd_api_key"),
-    $sickbeard_host = hiera("sickbeard_host"),
-    $sickbeard_port = hiera("sickbeard_port"),
-    $sickbeard_webroot = hiera("sickbeard_webroot"),
+    $sickbeard_host = hiera("sickbeard_host", '127.0.0.1'),
+    $sickbeard_port = hiera("sickbeard_port", '8081'),
+    $sickbeard_webroot = hiera("sickbeard_webroot", "/tv"),
     $plex_server_host = hiera("plex_server_host", ""),
     $enable_growl = hiera("enable_growl", "0"),
+    $proxy_nginx = hiera("proxy_nginx", "false"),
+    $proxy_apache = hiera("proxy_apache", "false"),
     $url = hiera("sickbeard_git_url", "git://github.com/midgetspy/Sick-Beard.git"),
+    $external_dns = hiera("external_dns", "127.0.0.1"),
+    $venv_dir = "venv",
 ){
     if ($sabnzbd_ssl == '1') {
         $protocal = 'https://'

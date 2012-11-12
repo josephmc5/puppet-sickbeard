@@ -1,4 +1,11 @@
 class sickbeard::config {
+    include sickbeard::proxy
+
+    file { "$log_dir":
+        ensure => directory,
+        owner => 'sickbeard',
+        group => 'sickbeard',
+    }
     file { "$base_dir/sickbeard/config/":
         ensure => directory,
         owner => 'sickbeard',

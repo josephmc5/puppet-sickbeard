@@ -1,6 +1,15 @@
 class sickbeard::config {
     include sickbeard::proxy
-
+    if $logrotate {
+        logrotate::rule { 'sickbeard':
+            path          => "$log_dir/*",
+            rotate        => 5,
+            mail          => 'system@joemcwilliams.com',
+            size          => '100k',
+            sharedscripts => true,
+            postrotate    => '/usr/bin/supervisorctl restart sickbeard',
+        }
+    }
     file { "$log_dir":
         ensure => directory,
         owner => 'sickbeard',

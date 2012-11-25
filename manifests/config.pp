@@ -11,25 +11,25 @@ class sickbeard::config {
     }
     file { "$log_dir":
         ensure => directory,
-        owner => 'sickbeard',
-        group => 'sickbeard',
+        owner => "$services_user",
+        group => "$services_user",
     }
     file { "$base_dir/sickbeard/config/":
         ensure => directory,
-        owner => 'sickbeard',
-        group => 'sickbeard',
+        owner => "$services_user",
+        group => "$services_user",
     }
     file { "$base_dir/sickbeard/config/config.ini":
         content => template('sickbeard/config.ini.erb'),
-        owner => 'sickbeard',
-        group => 'sickbeard',
+        owner => "$services_user",
+        group => "$services_user",
         mode => '0644',
         require => File["$base_dir/sickbeard/config/"],
     }
     file { "$base_dir/sickbeard/config/autoProcessTV.cfg":
         content => template('sickbeard/autoProcessTV.cfg.erb'),
-        owner => 'sickbeard',
-        group => 'sickbeard',
+        owner => "$services_user",
+        group => "$services_user",
         mode => '0644',
         require => File["$base_dir/sickbeard/config/"],
     }

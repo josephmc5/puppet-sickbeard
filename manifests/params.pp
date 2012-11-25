@@ -22,12 +22,7 @@ class sickbeard::params (
     $logrotate = hiera("logrotate", "false"),
     $venv_dir = "venv",
 ){
-    if ($sabnzbd_ssl == '1') {
-        $protocal = 'https://'
-    }
-    else {
-        $protocal = 'http://'
-    }        
-    $sabnzbd_url = "$protocal$sabnzbd_host:$sabnzbd_port"
+    $services_user = hiera("services_user")
+    $sabnzbd_url = "$sabnzbd_host:$sabnzbd_port"
     $log_dir = "$base_dir/sickbeard/log"
 }
